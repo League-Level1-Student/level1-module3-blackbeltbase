@@ -5,6 +5,8 @@ package _03_jukebox;
  */
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -12,7 +14,10 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -20,13 +25,21 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 /*   If you don't have javazoom.jar in your project, you can download it from here: http://bit.ly/javazoom
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
-public class Jukebox implements Runnable {
-
+public class Jukebox implements Runnable, ActionListener {
+private JFrame frame = new JFrame();;
+private JButton button = new JButton("PlaySong");
+private Song song = new	Song("http://freedownloads.last.fm/download/569264057/Get%2BGot.mp3"); 
     public void run() {
-
+    	JPanel panel = new JPanel();
+        button.addActionListener(this);
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
-
+        panel.add(button);
+         frame.add(panel);
+         frame.pack();
+         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         frame.setVisible(true);
+         
 		// 3. Play the Song
 
 		/*
@@ -44,6 +57,16 @@ public class Jukebox implements Runnable {
 		URL imageURL = getClass().getResource(fileName);
 		Icon icon = new ImageIcon(imageURL);
 		return new JLabel(icon);
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		JButton buttonPressed = (JButton) e.getSource();
+if(buttonPressed == button) {
+song.play();
+}
 	}
 
 }
@@ -71,6 +94,7 @@ class Song {
 
 	public void play() {
 		loadFile();
+		System.out.println("played");
 		if (songStream != null) {
 			loadPlayer();
 			startSong();
