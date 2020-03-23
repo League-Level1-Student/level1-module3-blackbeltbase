@@ -50,23 +50,23 @@ public class MediaPalace {
 	 * If this jar has not been added, you can download from: http://www.javazoom.net/javalayer/javalayer.html
 	 * Uncomment this method.
 	 */
-	// private void playMp3FromComputer(String fileName) throws JavaLayerException {
-	// FileInputStream songStream = new FileInputStream(fileName);
-	//
-	// final Player playMp3 = new Player(songStream);
-	//
-	// Thread t = new Thread() {
-	// public void run() {
-	// try {
-	// playMp3.play();
-	// } catch (JavaLayerException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// }
-	// };
-	// t.start();
-	// }
+//	 private void playMp3FromComputer(String fileName) throws JavaLayerException {
+//	 FileInputStream songStream = new FileInputStream(fileName);
+//	
+//	 final Player playMp3 = new Player(songStream);
+//	
+//	 Thread t = new Thread() {
+//	 public void run() {
+//	 try {
+//	 playMp3.play();
+//	 } catch (JavaLayerException e) {
+//	 // TODO Auto-generated catch block
+//	 e.printStackTrace();
+//	 }
+//	 }
+//	 };
+//	 t.start();
+//	 }
 
 	/* This method will use your default mp3 player to play the song */
 	public void playMusicOnComputer(String fileName) {
@@ -83,7 +83,7 @@ public class MediaPalace {
 		return JApplet.newAudioClip(getClass().getResource(fileName));
 	}
 
-	public void playSoundFromInternet(String soundURL) {
+	public static void playSoundFromInternet(String soundURL) {
 		try {
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new URL(soundURL));
 			Clip clip = AudioSystem.getClip();

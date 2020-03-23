@@ -7,6 +7,7 @@ package _04_magic_box;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -14,12 +15,13 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class MagicBox extends JPanel implements Runnable, MouseListener {
-
+MediaPalace palace = new MediaPalace();
 	/*
 	 * We are going to hide secrets within the magic box. 
 	 * When the user clicks on a secret place, stuff will happen.
@@ -70,16 +72,31 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		g.drawImage(backgroundImage, 0, 0, null);
 	}
 
+	
+	public void actionPerformed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		int color =  backgroundImage.getRGB(e.getX(), e.getY());
+		System.out.println(color);
+	
+		MediaPalace.playSoundFromInternet("https://www.mfiles.co.uk/mp3-downloads/brahms-st-anthony-chorale-theme-orchestral.mp3");
+		System.out.println("soundPlayedd from Internet");
+}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		int color =  backgroundImage.getRGB(e.getX(), e.getY());
+		System.out.println(color);
+	
+		MediaPalace.playSoundFromInternet("https://www.mfiles.co.uk/mp3-downloads/brahms-st-anthony-chorale-theme-orchestral.mp3");
+		System.out.println("soundPlayedd from Internet");
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		palace.speak("hey vSauce!");
+		System.out.println("spoken");
 	}
 
 	@Override
