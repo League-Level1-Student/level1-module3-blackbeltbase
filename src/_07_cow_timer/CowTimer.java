@@ -34,7 +34,7 @@ public class CowTimer {
 			System.out.print ("sis");
 			System.out.print ("sip");
 			System.out.print ("pi");
-		
+			System.out.println("");
 		}
 		Thread.sleep(seconds*1000);
 		/*
@@ -42,7 +42,7 @@ public class CowTimer {
 		 * You can use the .wav file in the default package, or you can download one
 		 * from freesound.org, then drag it intothe default package.
 		 */
-playSound(moo.wav);
+//playSound(moo.wav);
 	}
 
 	private void playSound(String fileName) {

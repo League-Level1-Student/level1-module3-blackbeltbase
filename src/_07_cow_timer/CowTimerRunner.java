@@ -6,6 +6,6 @@ public class CowTimerRunner {
 		 * Use a short delay (seconds) when testing, then try with longer delays */
 		CowTimer cowTimer = new CowTimer();
 		cowTimer.setTime(2);
-		
+		cowTimer.start();
 	}
 }

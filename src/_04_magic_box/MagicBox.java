@@ -17,11 +17,13 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class MagicBox extends JPanel implements Runnable, MouseListener {
 MediaPalace palace = new MediaPalace();
+
 	/*
 	 * We are going to hide secrets within the magic box. 
 	 * When the user clicks on a secret place, stuff will happen.
@@ -52,6 +54,7 @@ MediaPalace palace = new MediaPalace();
 	private void createUI() {
 		JFrame frame = new JFrame("The Magic Box contains many secrets...");
 		frame.add(this);
+		frame.addMouseListener(this);
 		setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,6 +68,7 @@ MediaPalace palace = new MediaPalace();
 		} catch (IOException e) {
 			throw new Exception("Could not load image: " + imageFile);
 		}
+		
 	}
 
 	@Override
@@ -73,48 +77,46 @@ MediaPalace palace = new MediaPalace();
 	}
 
 	
-	public void actionPerformed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		int color =  backgroundImage.getRGB(e.getX(), e.getY());
-		System.out.println(color);
-	
-		MediaPalace.playSoundFromInternet("https://www.mfiles.co.uk/mp3-downloads/brahms-st-anthony-chorale-theme-orchestral.mp3");
-		System.out.println("soundPlayedd from Internet");
-}
+
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		int color =  backgroundImage.getRGB(e.getX(), e.getY());
 		System.out.println(color);
-	
-		MediaPalace.playSoundFromInternet("https://www.mfiles.co.uk/mp3-downloads/brahms-st-anthony-chorale-theme-orchestral.mp3");
-		System.out.println("soundPlayedd from Internet");
+	if(color>-8030120) {
+		palace.speak("hello");
+		System.out.println("soundPlayed from Internet");}
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		palace.speak("hey vSauce!");
+		System.out.println("pressed");
+		palace.speak("hello");
 		System.out.println("spoken");
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("released");
+		MediaPalace.playSoundFromInternet("moo.mp3");
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		JOptionPane.showMessageDialog(null, "You've come to the palace.");
+		System.out.println("entered");
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		JOptionPane.showMessageDialog(null, "And may never leave.");
+		System.out.println("exited");
 	}
 
 }
